@@ -1,0 +1,41 @@
+.commentPage {
+    min-height: 20vh;
+    background-color: #F0FFFF;
+    align-items: center;
+    justify-content: center;
+    color: #000099;
+    font-family:  'Open Sans', sans-serif;
+    border: 3px solid #f1f1f1;
+}
+
+.buttons {
+    background-color: #000099;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    font-size: 16px;
+    opacity: 1;
+    transition: 0.3s;
+    text-decoration: none;
+    cursor: pointer;
+    marginBottom: 30;
+}
+
+.image {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 50%;
+    border-radius: 50%;
+}
+
+.center {
+    flex: 1;
+    justifyContent: 'flex-end';
+    marginBottom: 30;
+    border: 3px;
+    color: #0033CC;
+}

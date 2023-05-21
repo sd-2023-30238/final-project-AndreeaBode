@@ -14,16 +14,15 @@ public class ObiectiveDTO extends RepresentationModel<ObiectiveDTO> {
     private int id;
     private String nume_obiectiv;
     private String descriere_text;
-    private String descriere_audio;
+
     private Double pret_intrare;
     private String locatie;
     private String categorie;
 
 
-    public ObiectiveDTO(String nume_obiectiv, String descriere_text, String descriere_audio, Double pret_intrare, String locatie, String categorie) {
+    public ObiectiveDTO(String nume_obiectiv, String descriere_text, Double pret_intrare, String locatie, String categorie) {
         this.nume_obiectiv = nume_obiectiv;
         this.descriere_text = descriere_text;
-        this.descriere_audio = descriere_audio;
         this.pret_intrare = pret_intrare;
         this.locatie = locatie;
         this.categorie = categorie;
@@ -51,14 +50,6 @@ public class ObiectiveDTO extends RepresentationModel<ObiectiveDTO> {
 
     public void setDescriere_text(String descriere_text) {
         this.descriere_text = descriere_text;
-    }
-
-    public String getDescriere_audio() {
-        return descriere_audio;
-    }
-
-    public void setDescriere_audio(String descriere_audio) {
-        this.descriere_audio = descriere_audio;
     }
 
     public Double getPret_intrare() {

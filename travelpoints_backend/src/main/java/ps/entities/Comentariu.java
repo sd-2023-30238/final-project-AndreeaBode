@@ -32,8 +32,6 @@ public class Comentariu implements Serializable {
     @JoinColumn(name = "id_user", nullable = false)
     private User utilizator;
 
-    @OneToOne(mappedBy="comentariu",fetch = FetchType.LAZY, optional = false,cascade=CascadeType.MERGE)
-    private Review review;
 
     @ManyToOne( optional = false, cascade=CascadeType.MERGE)
     @JoinColumn(name = "id_obiectiv", nullable = false)

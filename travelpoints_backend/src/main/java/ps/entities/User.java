@@ -37,21 +37,6 @@ public class User {
             cascade = CascadeType.ALL)
     private List<Comentariu> comentarii;
 
-    @OneToMany(mappedBy = "utilizator", fetch = FetchType.LAZY)
-    private List<Vizita> vizite;
-
-    @OneToMany(mappedBy = "utilizator", fetch = FetchType.LAZY)
-    private List<Wishlist> wishlist;
-
-    @OneToMany(mappedBy = "utilizator",
-            cascade = CascadeType.ALL)
-    private List<Email> emails;
-
-    @OneToMany(mappedBy = "utilizator1",
-            cascade = CascadeType.ALL)
-    private List<Email> emails1;
-
-
     public User() {
     }
 
@@ -128,32 +113,5 @@ public class User {
         this.comentarii = comentarii;
     }
 
-    public List<Vizita> getVizite() {
-        return vizite;
-    }
-
-    public void setVizite(List<Vizita> vizite) {
-        this.vizite = vizite;
-    }
-
-    public List<Wishlist> getWishlist() {
-        return wishlist;
-    }
-
-    public List<Email> getEmails() {
-        return emails;
-    }
-
-    public void setEmails(List<Email> emails) {
-        this.emails = emails;
-    }
-
-    public List<Email> getEmails1() {
-        return emails1;
-    }
-
-    public void setEmails1(List<Email> emails1) {
-        this.emails1 = emails1;
-    }
 }
 

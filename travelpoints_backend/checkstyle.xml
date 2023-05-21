@@ -8,7 +8,7 @@
         </module>
         <module name="EqualsHashCode">
             <property name="severity" value="error" />
-        </module>
+        </module> 
         <module name="MissingSwitchDefault">
             <property name="severity" value="error" />
         </module>

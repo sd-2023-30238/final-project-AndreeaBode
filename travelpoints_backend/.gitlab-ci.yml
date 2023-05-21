@@ -2,7 +2,7 @@ stages:
   - build
   - test
   - checkstyle
-  - deploy
+  - deploy 
 
 build:
   stage: build

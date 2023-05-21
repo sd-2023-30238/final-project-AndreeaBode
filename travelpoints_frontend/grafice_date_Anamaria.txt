@@ -1,0 +1,70 @@
+
+INSERT INTO public.utilizator(
+	email, password, role, status, username)
+	VALUES ('anamaria@yahoo.com', 'anamaria', 'admin', 0, 'anamaria');
+INSERT INTO public.utilizator(
+	email, password, role, status, username)
+	VALUES ('mariana@yahoo.com', 'mariana', 'admin', 0, 'mariana');
+INSERT INTO public.utilizator(
+	email, password, role, status, username)
+	VALUES ('andreea@yahoo.com', 'andreea', 'user', 0, 'andreea');
+INSERT INTO public.utilizator(
+	email, password, role, status, username)
+	VALUES ('vasile@yahoo.com', 'vasile', 'user', 0, 'vasile');
+INSERT INTO public.utilizator(
+	email, password, role, status, username)
+	VALUES ('mihaita@yahoo.com', 'mihaita', 'user', 0, 'mihaita');
+
+
+INSERT INTO obiective ( categorie, descriere_audio, descriere_text,  locatie, nume_obiectiv, pret_intrare) values ( 'Architecture', '../colosseum.mp3"', 'Loaded with history, the Colosseum is a perfect place to take memorable photos or to feel the vibrant atmosphere of gladiatorial fights fought here over time.', 'Roma', 'Colosseum', '16');
+INSERT INTO obiective ( categorie, descriere_audio, descriere_text,  locatie, nume_obiectiv, pret_intrare) values ( 'Architecture', '', 'Among the most important structures within the monument are the Amphitheater, the Garden of the Fugitives, the Forum. The public baths or "thermae" are another part of the monument to visit.', 'Napoli',  'Ruinele din Pompei', '32');
+INSERT INTO obiective ( categorie, descriere_audio, descriere_text,  locatie, nume_obiectiv, pret_intrare) values ( 'Monument', '../eiffeltower.mp3', 'The structure was built between 1887 and 1889 as an entrance arch to the Universal Exposition, which took place at the celebration of the French Revolution of 1789. The Eiffel Tower is 324 m high.', 'Paris', 'Turnul Eiffel', '109');
+INSERT INTO obiective ( categorie, descriere_audio, descriere_text,  locatie, nume_obiectiv, pret_intrare) values ( 'Museum', '../luvru.mp3', 'If you’re an art enthusiast, you’ll enjoy spending some time in the aisles or in the halls of the Louvre Museum in Paris, admiring the thousands of works of art.', 'Paris', 'Muzeul Luvru', '17');
+INSERT INTO obiective (categorie, descriere_audio, descriere_text,  locatie, nume_obiectiv, pret_intrare) values ( 'Monument', '', 'Big Ben is a tower clock known for its accuracy and for its massive hour bell. Strictly speaking, the name refers only to the bell, which weighs 15.1 tons.', 'Londra', 'Big Ben', '0');
+INSERT INTO obiective ( categorie, descriere_audio, descriere_text,  locatie, nume_obiectiv, pret_intrare) values ( 'Architecture', '', 'This intricate work of art, with an elaborate roof, five domes and nearly two acres of gold-mosaic mosaics covering the walls, arches, domes.', 'Venetia',  'Basilica San Marco', '10');
+INSERT INTO obiective ( categorie, descriere_audio, descriere_text,  locatie, nume_obiectiv, pret_intrare) values ( 'Amusement Park', '', 'Disneyland Paris has two theme parks, a shopping mall, a dining and entertainment district, and seven Disney-owned hotels.', 'Paris',  'Disneyland Park', '200');
+INSERT INTO obiective ( categorie, descriere_audio, descriere_text,  locatie, nume_obiectiv, pret_intrare) values ( 'Comercial Center', '', 'Appearing in the 15th century, the Bazaar has expanded and become more and more touristy, and today there are about 15 million bargain hunters.', 'Istanbul', 'Grand Bazaar', '0');
+
+
+
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ('12-05-2021', '12:00', '1', '2');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ('02-03-2021', '14:30', '2', '3');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ('20-07-2021', '09:00', '2', '4');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '13-07-2021', '11:00', '3', '2');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '02-06-2021', '17:30', '3', '4');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '07-03-2021', '10:00', '8', '3');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '18-04-2021', '14:00', '8', '2');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '10-05-2021', '12:00', '8', '1');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '12-09-2021', '14:00', '2', '5');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '03-09-2021', '11:30', '2', '1');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '12-05-2021', '14:30', '8', '1');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '09-03-2021', '09:45', '4', '2');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '09-03-2021', '09:45', '5', '2');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '10-03-2021', '09:45', '6', '1');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '11-03-2021', '09:45', '7', '5');
+INSERT INTO vizita (data, ora, id_obiectiv, id_user)  values ( '09-02-2021', '09:45', '6', '3');
+
+
+
+
+!!! PT GRAFICE
+
+SELECT e.nume_obiectiv, COUNT(v.id_obiectiv) as nr
+FROM obiective e
+INNER JOIN vizita v
+ON e.id=v.id_obiectiv
+GROUP BY e.nume_obiectiv;
+
+SELECT e.locatie, COUNT(e.locatie) as nr
+FROM obiective e
+INNER JOIN vizita v
+ON e.id=v.id_obiectiv
+GROUP BY e.locatie;
+
+
+
+
+
+
+
+
