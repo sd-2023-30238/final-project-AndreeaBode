@@ -16,6 +16,9 @@ import Wish from "./wishboard/components/Wish";
 import Comment from "./comments/components/Comment";
 import Charts from "./admin/components/Charts";
 import PriceCharts from "./admin/components/PriceCharts";
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+
 
 class App extends React.Component {
 

@@ -1,6 +1,7 @@
 package ps.entities;
 
 import lombok.Data;
+import ps.observer.Observer;
 import ps.utils.Status;
 
 import javax.persistence.*;

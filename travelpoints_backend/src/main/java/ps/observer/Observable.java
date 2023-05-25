@@ -1,6 +1,11 @@
 package ps.observer;
 
+import ps.dtos.ObiectiveDTO;
+
 public interface Observable {
-    void addObserver(Observer observer);
-    void removeObserver(Observer observer);
+
+        void attachObserver(Observer observer);
+        void detachObserver(Observer observer);
+        void notifyObservers(ObiectiveDTO obiectiveDTO);
+
 }

@@ -79,10 +79,11 @@ public class ObiectiveController {
     //delete
     @DeleteMapping(value = "/adminboard/objectives/delete/{id}")
     public ResponseEntity<Integer> deleteObjective(@PathVariable("id") int obiectiveId) {
-        wishService.delete(wishService.findWishlistById(obiectiveId));
-        int obiectiveID = obiectiveService.delete(obiectiveService.findObiectivById(obiectiveId));
+        //wishService.delete(wishService.findWishlistById(obiectiveId));
+         obiectiveService.delete(obiectiveService.findObiectivById(obiectiveId));
         return new ResponseEntity<>(obiectiveId, HttpStatus.OK);
     }
+
 
     //vizualizareDescriereText
  /*   @GetMapping(value = "/adminboard/objectives/text/{id}")

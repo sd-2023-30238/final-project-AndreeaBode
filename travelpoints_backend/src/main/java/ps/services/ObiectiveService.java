@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
-import ps.observer.ObiectiveObserver;
+import ps.observer.EmailService;
 import ps.observer.Observable;
 import ps.observer.Observer;
 import ps.dtos.ObiectiveDTO;
@@ -13,6 +13,7 @@ import ps.dtos.builders.ObiectiveBuilder;
 import ps.entities.Obiective;
 import ps.entities.User;
 import ps.repositories.ObiectiveRepository;
+import ps.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,21 @@ import java.util.stream.Collectors;
 public class ObiectiveService implements Observable {
     private static final Logger LOGGER = LoggerFactory.getLogger(ObiectiveService.class);
     private final ObiectiveRepository obiectiveRepository;
-    private ObiectiveObserver obiectiveObserver;
+    private EmailService emailService;
     private List<Observer> observers = new ArrayList<>();
-
     @Autowired
+    private UserRepository userRepository;
+
+    //@Autowired
     public ObiectiveService(ObiectiveRepository obiectiveRepository) {
         this.obiectiveRepository = obiectiveRepository;
     }
+    @Autowired
+    public ObiectiveService(ObiectiveRepository obiectiveRepository, EmailService emailService) {
+        this.obiectiveRepository = obiectiveRepository;
+        this.emailService = emailService; // Injectează serviciul de e-mail
+    }
+
 
     public void attachObserver(Observer observer) {
         observers.add(observer);
@@ -38,7 +47,6 @@ public class ObiectiveService implements Observable {
     public void detachObserver(Observer observer) {
         observers.remove(observer);
     }
-
 
     public List<ObiectiveDTO> findObiective() {
         List<Obiective> obiectiveList = obiectiveRepository.findAll();
@@ -60,7 +68,7 @@ public class ObiectiveService implements Observable {
         Obiective obiective = ObiectiveBuilder.toEntity(obiectiveDTO);
         obiective = obiectiveRepository.save(obiective);
         LOGGER.debug("Obiectiv with id {} was inserted in db", obiective.getId());
-        obiectiveObserver.notifyObservers(obiectiveDTO);
+        notifyObservers(obiectiveDTO);
         return obiective.getId();
     }
 
@@ -116,13 +124,21 @@ public class ObiectiveService implements Observable {
         return ObiectiveBuilder.toObiectiveDTO(obiective);
     }
 
-    @Override
-    public void addObserver(Observer observer) {
-        attachObserver(observer);
+
+    public List<String> getAllUserEmails() {
+        List<User> userList = userRepository.findAll();
+        return userList.stream()
+                .map(User::getEmail)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void removeObserver(Observer observer) {
-        detachObserver(observer);
+    public void notifyObservers(ObiectiveDTO obiectiveDTO) {
+        List<String> userEmails = getAllUserEmails();
+        for (String email : userEmails) {
+            emailService.sendEmail(email, obiectiveDTO);
+        }
+        System.out.println("Un nou obiectiv a fost înregistrat");
     }
+
 }
