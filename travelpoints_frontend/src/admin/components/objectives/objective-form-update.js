@@ -128,7 +128,6 @@ class ObjectiveFormUpdate extends React.Component {
             locatie: this.state.formControls.locatie.value,
             categorie: this.state.formControls.categorie.value,
             descriere_text: this.state.formControls.descriere_text.value,
-            descriere_audio: this.state.formControls.descriere_audio.value,
             pret_intrare: this.state.formControls.pret_intrare.value,
             };
 
@@ -161,6 +160,16 @@ class ObjectiveFormUpdate extends React.Component {
             }
         });
     }
+    componentDidUpdate(prevProps) {
+        // Verificăm dacă a fost primită o notificare nouă
+        if (this.props.newObjectiveNotification && this.props.newObjectiveNotification !== prevProps.newObjectiveNotification) {
+          // Afișăm notificarea pe pagină (de exemplu, într-un element HTML special)
+          const notificationElement = document.getElementById('newObjectiveNotification');
+          if (notificationElement) {
+            notificationElement.innerText = `A new objective has been added: ${this.props.newObjectiveNotification}`;
+          }
+        }
+      }
 
     render() {
         return (
@@ -218,14 +227,6 @@ class ObjectiveFormUpdate extends React.Component {
                                         />
                                   </FormGroup>
 
-                                   <FormGroup id='descriere_audio'>
-                                        <Label for='descriere_audioField'> Audio description: </Label>
-                                        <Input name='descriere_audio' id='descriere_audioField' placeholder={this.state.formControls.descriere_audio.placeholder}
-                                              onChange={this.handleChange}
-                                              defaultValue={this.state.formControls.descriere_audio.value}
-                                              touched={this.state.formControls.descriere_audio.touched ? 1 : 0}
-                                       />
-                                   </FormGroup>
 
                                     <FormGroup id='pret_intrare'>
                                           <Label for='pret_intrareField'> Entrance fee: </Label>
@@ -252,6 +253,7 @@ class ObjectiveFormUpdate extends React.Component {
                     this.state.errorStatus > 0 &&
                     <APIResponseErrorMessage errorStatus={this.state.errorStatus} error={this.state.error}/>
                 }
+                <div id="newObjectiveNotification" className="success-message"></div>
             </div>
         );
     }

@@ -95,9 +95,6 @@ const PriceCharts = () => {
             <Link className='link' to='/comments'>
                Comments
             </Link>
-            <Link className='link' to='/email'>
-                Email
-            </Link>
             <Link className='link' to='/charts'>
                       Charts
                 </Link>

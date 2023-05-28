@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from 'moment';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {
   Tooltip,
@@ -13,6 +13,29 @@ import {
   Bar,
   Cell,
 } from "recharts";
+
+// Clasa de fabrică pentru crearea obiectelor chart
+class ChartFactory {
+  createChartData(objectives) {
+    const locationCounts = {};
+
+    objectives.forEach((objective) => {
+      const { locatie } = objective;
+      if (locatie in locationCounts) {
+        locationCounts[locatie]++;
+      } else {
+        locationCounts[locatie] = 1;
+      }
+    });
+
+    const chartData = Object.keys(locationCounts).map((locatie) => ({
+      locatie,
+      count: locationCounts[locatie],
+    }));
+
+    return chartData;
+  }
+}
 
 const Charts = () => {
   const [objectives, setObjectives] = useState([]);
@@ -28,31 +51,10 @@ const Charts = () => {
       });
   }, []);
 
-  const generateChartData = () => {
-    const locationCounts = {};
+  const chartFactory = new ChartFactory();
+  const chartData = chartFactory.createChartData(objectives);
 
-    
-    objectives.forEach((objective) => {
-      const { locatie } = objective;
-      if (locatie in locationCounts) {
-        locationCounts[locatie]++;
-      } else {
-        locationCounts[locatie] = 1;
-      }
-    });
-
-    
-    const chartData = Object.keys(locationCounts).map((locatie) => ({
-      locatie,
-      count: locationCounts[locatie],
-    }));
-
-    return chartData;
-  };
-
-  const chartData = generateChartData();
-
-  const chartFactory = (chartData) => {
+  const renderChart = (chartData) => {
     return (
       <BarChart
         width={500}
@@ -84,30 +86,26 @@ const Charts = () => {
           <span className='halfBlue'>Points</span>
         </div>
         <div className='link'>
-        <Link className='link' to='/'>
-                      Logout
-                </Link>
-                 <Link className='link' to='/wishboard'>
-                     Wishlist
-                 </Link>
-            <Link className='link' to='/comments'>
-               Comments
-            </Link>
-            <Link className='link' to='/email'>
-                Email
-            </Link>
-            <Link className='link' to='/pricecharts'>
-                      PriceCharts
-                </Link>
+          <Link className='link' to='/'>
+            Logout
+          </Link>
+          <Link className='link' to='/wishboard'>
+            Wishlist
+          </Link>
+          <Link className='link' to='/comments'>
+            Comments
+          </Link>
+          <Link className='link' to='/pricecharts'>
+            PriceCharts
+          </Link>
         </div>
       </div>
       <div className="charts">
         <br /><br /><br />
-        {chartFactory(chartData)}
+        {renderChart(chartData)}
       </div>
     </div>
-  );  
+  );
 };
-
 
 export default Charts;

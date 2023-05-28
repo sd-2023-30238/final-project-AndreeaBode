@@ -39,15 +39,6 @@ public class ObiectiveService implements Observable {
         this.emailService = emailService; // Injectează serviciul de e-mail
     }
 
-
-    public void attachObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    public void detachObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
     public List<ObiectiveDTO> findObiective() {
         List<Obiective> obiectiveList = obiectiveRepository.findAll();
         return obiectiveList.stream()
@@ -86,15 +77,6 @@ public class ObiectiveService implements Observable {
         if (!obiectiveOptional.isPresent()) {
             LOGGER.error("Obiectiv with name {} was not found in db", categorie);
             throw new ResourceNotFoundException("Obiectiv with name " + categorie + " was not found!");
-        }
-        return ObiectiveBuilder.toObiectiveDTO(obiectiveOptional.get());
-    }
-
-    public ObiectiveDTO vizualizareText(int id) {
-        Optional<Obiective> obiectiveOptional = obiectiveRepository.findById(id);
-        if (!obiectiveOptional.isPresent()) {
-            LOGGER.error("Obiectiv with id {} was not found in db", id);
-            throw new ResourceNotFoundException("Obiectiv with id " + id + " was not found!");
         }
         return ObiectiveBuilder.toObiectiveDTO(obiectiveOptional.get());
     }

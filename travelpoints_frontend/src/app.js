@@ -7,7 +7,7 @@ import ResetPasswordContainer from './reset-password/components/reset-password-c
 import TouristContainer from './tourist/components/tourist-container';
 import AdminContainer from './admin/components/admin-container';
 import CommentContainer from './tourist/components/comment-container';
-import ContactUs from './tourist/components/ContactUs';
+
 
 import ErrorPage from './commons/errorhandling/error-page';
 import styles from './commons/styles/project-style.css';
@@ -65,11 +65,6 @@ class App extends React.Component {
                              path='/adminboard'
                              render={() => <AdminContainer/>}
                         />
-                         <Route
-
-                             path='/email'
-                             render={() => <ContactUs/>}
-                         />
 
                         <Route
 

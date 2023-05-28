@@ -17,9 +17,7 @@ const Header = ({search,filterMovies}) => {
             <Link className='link' to='/wishboard'>
                      Wishlist
                  </Link>
-            <Link className='link' to='/email'>
-                Email
-            </Link>
+        
             <Link className='link' to='/charts'>
                       Charts
                 </Link>
